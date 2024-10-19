@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.beanc.controller.menu.file.themepaneprofileController">
+   <children>
+      <Label text="注：测试功能，暂提供一下几种主题形式。">
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin></Label>
+      <VBox alignment="CENTER_LEFT" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="150.0">
+         <children>
+            <RadioButton fx:id="primerlight" mnemonicParsing="false" onAction="#onPrimerLightRadioButtonClick" text="PrimerLight">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="primerdark" mnemonicParsing="false" onAction="#onPrimerDarkRadioButtonClick" text="PrimerDark">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="nordlight" mnemonicParsing="false" onAction="#onNordLightRadioButtonClick" text="NordLight">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="norddark" mnemonicParsing="false" onAction="#onNordDarkRadioButtonClick" text="NordDark" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </VBox>
+      <Label text="设置成功后，请重启程序">
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </Label>
+      <GridPane fx:id="gridButtonPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="cancel" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCancelButtonClick" text="取消" GridPane.columnIndex="4" />
+            <Button fx:id="confirm" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onConfirmButtonClick" text="确认" GridPane.columnIndex="6" />
+            <Button fx:id="apply" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onApplyButtonClick" text="应用" GridPane.columnIndex="7" />
+         </children>
+      </GridPane>
+   </children>
+</VBox>

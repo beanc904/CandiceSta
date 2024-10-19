@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity"
+            maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="200.0"
+            prefWidth="400.0"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.beanc.controller.initial.initialController"
+            fx:id="rootPane">
+   <children>
+      <VBox layoutX="47.0"
+            layoutY="50.0"
+            prefHeight="100.0"
+            prefWidth="200.0"
+            AnchorPane.leftAnchor="50.0">
+         <children>
+            <VBox prefHeight="200.0"
+                  prefWidth="100.0">
+               <children>
+                  <RadioButton fx:id="init"
+                               mnemonicParsing="false"
+                               text="初次运行">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0"
+                  prefWidth="100.0">
+               <children>
+                  <RadioButton fx:id="old"
+                               mnemonicParsing="false"
+                               text="导入配置">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <TextField fx:id="path"
+                             promptText="拖至此处或直接输入路径">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="291.0"
+            layoutY="36.0"
+            prefHeight="127.0"
+            prefWidth="82.0">
+         <children>
+            <VBox alignment="CENTER"
+                  prefHeight="200.0"
+                  prefWidth="100.0">
+               <children>
+                  <Button fx:id="exit"
+                          mnemonicParsing="false"
+                          text="退出"
+                          textAlignment="CENTER"
+                          onAction="#onExitButtonClick">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER"
+                  prefHeight="200.0"
+                  prefWidth="100.0">
+               <children>
+                  <Button fx:id="confirm"
+                          mnemonicParsing="false"
+                          text="确认"
+                          textAlignment="CENTER"
+                          onAction="#onConfirmButtonClick">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="rootVBox" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.beanc.controller.workstation.workstationController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu id="file" mnemonicParsing="false" text="文件">
+               <items>
+                  <MenuItem fx:id="file_newdatabase" mnemonicParsing="false" onAction="#onFileNewdatabaseMenuItemClick" text="新建班级数据库" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" text="导入">
+                    <items>
+                        <MenuItem fx:id="file_import_database" mnemonicParsing="false" onAction="#onFileImportDatabaseMenuItemClick" text="数据库" />
+                        <MenuItem fx:id="file_import_all" mnemonicParsing="false" onAction="#onFileImportAllMenuItemClick" text="全部" />
+                        <MenuItem fx:id="file_import_preference" mnemonicParsing="false" onAction="#onFileImportPreferenceMenuItemClick" text="个人偏好设置" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="导出">
+                    <items>
+                        <MenuItem fx:id="file_export_database" mnemonicParsing="false" onAction="#onFileExportDatabaseMenuItemClick" text="数据库" />
+                        <MenuItem fx:id="file_export_log" mnemonicParsing="false" onAction="#onFileExportLogMenuItemClick" text="日志" />
+                        <MenuItem fx:id="file_export_all" mnemonicParsing="false" onAction="#onFileExportAllMenuItemClick" text="全部" />
+                        <MenuItem fx:id="file_export_preference" mnemonicParsing="false" onAction="#onFileExportPreferenceMenuItemClick" text="个人偏好设置" />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" text="首选项">
+                    <items>
+                        <Menu mnemonicParsing="false" text="表单总览布局">
+                          <items>
+                              <RadioMenuItem fx:id="table_all_add" mnemonicParsing="false" onAction="#onTableAllAddRadioMenuItemClick" text="清卫加分总表" />
+                              <RadioMenuItem fx:id="table_all_deduct" mnemonicParsing="false" onAction="#onTableAllDeductRadioMenuItemClick" text="清卫扣分总表" />
+                              <RadioMenuItem fx:id="table_add" mnemonicParsing="false" onAction="#onTableAddRadioMenuItemClick" text="体活罚除记录" />
+                              <RadioMenuItem fx:id="table_deduct" mnemonicParsing="false" onAction="#onTableDeductRadioMenuItemClick" text="体活使用记录" />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="日志显示">
+                          <items>
+                              <RadioMenuItem fx:id="log_history" mnemonicParsing="false" onAction="#onLogHistoryRadioMenuItemClick" text="显示历史" />
+                              <RadioMenuItem fx:id="log_without_history" mnemonicParsing="false" onAction="#onLogWithoutHistoryRadioMenuItemClick" text="不显示历史" />
+                          </items>
+                        </Menu>
+                      <MenuItem fx:id="file_use_parametric" mnemonicParsing="false" onAction="#onFileUseParametricMenuItemClick" text="消费面板参数配置" />
+                        <MenuItem fx:id="file_theme" mnemonicParsing="false" onAction="#onFileThemeMenuItemClick" text="主题配置" />
+                        <MenuItem fx:id="file_password" mnemonicParsing="false" onAction="#onFilePasswordMenuItemClick" text="密码配置" />
+                    </items>
+                  </Menu>
+               </items>
+        </Menu>
+        <Menu id="edit" mnemonicParsing="false" text="汇总">
+          <items>
+            <MenuItem fx:id="statistic" mnemonicParsing="false" onAction="#onEditStatisticMenuItemClick" text="统计" />
+          </items>
+        </Menu>
+        <Menu id="help" mnemonicParsing="false" text="帮助">
+          <items>
+            <MenuItem fx:id="about" mnemonicParsing="false" onAction="#onAboutMenuItemClick" text="关于" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane>
+          <children>
+                  <SplitPane dividerPositions="0.6" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label text="日志" />
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                                       <content>
+                                          <TextArea fx:id="log" editable="false" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
+                           <children>
+                              <VBox layoutX="21.0" layoutY="13.0" spacing="10.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" text="信息录入" textAlignment="CENTER" />
+                                          <Pane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" text="宿舍" />
+                                          <ComboBox fx:id="dormitory_input" editable="true" promptText="选择宿舍号" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" text="操作" />
+                                          <ComboBox fx:id="operate_input" editable="true" promptText="输入加/扣分情况" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" text="备注" />
+                                          <TextField fx:id="comment_input" editable="false" promptText="输入原因(半角;分隔)" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" text="操作密码" />
+                                          <PasswordField fx:id="password_input" promptText="操作者个人码" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Button fx:id="purge_input" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPurgeInputButtonClick" text="清空" textAlignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" />
+                                          <Button fx:id="complete_input" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCompleteInputButtonClick" text="完成" textAlignment="CENTER">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+          </children>
+        </AnchorPane>
+      <AnchorPane id="Content">
+               <children>
+                  <SplitPane dividerPositions="0.45" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                        <TableView fx:id="table" fixedCellSize="25.0" />
+                        <SplitPane dividerPositions="0.625" minHeight="-Infinity" minWidth="-Infinity">
+                          <items>
+                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="查询结果(余留查询)" />
+                                                <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                                                   <content>
+                                                      <TextArea fx:id="inquire_result" editable="false" />
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="消费记录(历史查询)" />
+                                                <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                                                   <content>
+                                                      <TextArea fx:id="use_records" editable="false" />
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <VBox layoutX="34.0" layoutY="13.0" spacing="10.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" text="加分/扣分消费" textAlignment="CENTER" />
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" text="(查/执)宿舍" textAlignment="CENTER" />
+                                                <ComboBox fx:id="dormitory_use" editable="true" promptText="选择宿舍号" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="160.0">
+                                             <children>
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" text="操作员密码" />
+                                                <PasswordField fx:id="password_use" promptText="操作者个人码" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="77.0">
+                                             <children>
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" text="(执行)操作" textAlignment="CENTER" />
+                                                <TextField fx:id="operate_use" editable="false" promptText="输入分数变动情况" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0">
+                                             <children>
+                                                <Label minHeight="-Infinity" minWidth="-Infinity" text="(查/执)备注" textAlignment="CENTER" />
+                                                <VBox alignment="CENTER_LEFT">
+                                                   <children>
+                                                      <RadioButton fx:id="radio_use" mnemonicParsing="false" text="使用体活" />
+                                                      <RadioButton fx:id="radio_punish" mnemonicParsing="false" text="罚除体活" />
+                                                      <RadioButton fx:id="radio_other" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <TextField fx:id="radio_text_other" editable="false" promptText="其他(输入使用原因)" />
+                                                         </graphic>
+                                                      </RadioButton>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                                <CheckBox fx:id="restCheck" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="余留查询" />
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                                <CheckBox fx:id="historyCheck" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="历史查询" />
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Button fx:id="purge_use" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPurgeUseButtonClick" text="清空" textAlignment="CENTER">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                                <Button fx:id="inquire_use" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onInquireUseButtonClick" text="查询" textAlignment="CENTER">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                                <Button fx:id="execute_use" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onExecuteUseButtonClick" text="执行" textAlignment="CENTER">
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                    </items>
+                  </SplitPane>
+               </children>
+      </AnchorPane>
+      </items>
+    </SplitPane>
+    <HBox id="HBox" alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
+      <children>
+        <Label fx:id="timestamp" maxHeight="1.7976931348623157E308" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" text="TimesTamp" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+          <font>
+            <Font size="11.0" fx:id="x3" />
+          </font>
+          <textFill>
+            <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
+          </textFill>
+        </Label>
+        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Label fx:id="notice" font="$x3" maxWidth="-1.0" minHeight="-Infinity" minWidth="-Infinity" text="Notice" textAlignment="CENTER" textFill="$x4" HBox.hgrow="NEVER" />
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#onExitButtonClick" text="退出" textAlignment="CENTER" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>
