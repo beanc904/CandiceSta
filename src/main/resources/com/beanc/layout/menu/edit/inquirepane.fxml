@@ -7,11 +7,22 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.beanc.controller.menu.edit.inquirepaneController">
    <children>
-      <Label text="查询结果" />
+      <HBox prefWidth="200.0">
+         <children>
+            <Label text="查询结果" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="export" mnemonicParsing="false" onAction="#onExportButtonClick" text="导出">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <content>
             <TextArea fx:id="result" />

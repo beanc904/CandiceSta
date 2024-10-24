@@ -119,18 +119,10 @@ public class MainApplication extends Application {
         }
     }
 
+    @Override
+    public void stop() {
 
-//    @Override
-//    public void stop() {
-//        if (isFirstRun) {
-//            String userHome = System.getProperty("user.home");
-//            new FileOperator(userHome + "\\.candice", "").rm_rf();
-//            System.out.println("删除操作");
-//        }
-//    }
-
-//    public static boolean isFirstRun = false;
-
+    }
 
     public static void main(String[] args) {
         launch();

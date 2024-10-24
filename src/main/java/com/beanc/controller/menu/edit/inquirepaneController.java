@@ -9,18 +9,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 
 public class inquirepaneController {
@@ -40,6 +35,25 @@ public class inquirepaneController {
 
     @FXML
     private TextArea result;
+
+    @FXML
+    private Button export;
+
+    @FXML
+    void onExportButtonClick(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("查询结果导出");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("查询结果(*.txt)", "*.txt"));
+        File file = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
+
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(result.getText());
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML

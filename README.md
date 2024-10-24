@@ -35,7 +35,7 @@
   在软件根目录中打开终端（PowerShell），并执行以下命令：
 
   ```bash
-  .\jre\bin\java.exe -module-path ".\jfx-sdk\lib" --add-modules javafx.controls,javafx.fxml,javafx.graphics -jar .\CandiceSta-1.0-SNAPSHOT.jar
+  .\jre\bin\java.exe --module-path ".\jfx-sdk\lib" --add-modules javafx.controls,javafx.fxml,javafx.graphics -jar .\CandiceSta-1.0.0-beta.jar
   ```
 
   将打印的结果提交至`issues`中，开发者会针对情况进行错误排查。
@@ -88,7 +88,7 @@
   - javafx-controls
   - javafx-fxml
 
-  [^注：]: 前端UI渲染核心组件
+  *注*: 前端UI渲染核心组件
 
 - `org.junit.juniter`:
 
@@ -99,7 +99,7 @@
 
   - atlantafx-base
 
-  [^注：]:主题UI接口
+  *注*: 主题UI接口
 
 - `org.apache.commons`:
 
@@ -122,13 +122,13 @@
 
   - ucanaccess
 
-  [^注：]:数据库核心接口
+  *注*: 数据库核心接口
 
 ### 其他参与测试
 
 - `@bow`:
 
-  参与开发版本软件后期的测试工作
+  参与开发版本软件后期的测试工作(_此人工作态度极不认真_)，哼。
 
 ## 构建状态
 
@@ -185,8 +185,13 @@
 
 - 当前版本
 
-  `1.0.0-alpha`: 完成软件的初步开发
+  `1.0.0-beta`:
+  - **修复**:
+    1. 修复`新建班级数据库`处的缓存区不稳定现象
+  - **新功能**:
+    1. 完善日志导出功能
+    2. 添加统计结果导出功能
 
 - 上一版本
 
-  无
+  `1.0.0-alpha`: 完成软件的初步开发

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
@@ -12,11 +9,11 @@
       spacing="10"
       alignment="CENTER">
     <Label text="Software Name: CandiceSta"/>
-    <Label text="Version: 1.0.0-alpha"/>
+    <Label text="Version: 1.0.0-beta"/>
     <Label text="Developed by: coffeebean"/>
     <Label text="Copyright © 2024 CandiceSta, Contributors."/>
     <Label fx:id="license" text="Licensed under the MIT License." />
-    <Hyperlink fx:id="hyperLink" text="https://github.com/beanc904" onAction="#onHyperlinkClick" />
+    <Hyperlink fx:id="hyperLink" text="https://github.com/beanc904/CandiceSta" onAction="#onHyperlinkClick" />
     <Button text="Close" onAction="#handleClose"/>
     <VBox.margin>
         <Insets top="20"/>

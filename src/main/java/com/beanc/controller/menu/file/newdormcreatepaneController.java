@@ -2,9 +2,9 @@ package com.beanc.controller.menu.file;
 
 import com.beanc.database.DormCreator;
 import com.beanc.database.TableWriter;
+import com.beanc.util.FileOperator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,8 @@ public class newdormcreatepaneController {
 
     @FXML
     public GridPane gridButtonPane;
+
+    public static String cacheTablePath = System.getProperty("user.home") + "\\.candice\\cache.accdb";
 
     @FXML
     void onAddButtonClick(ActionEvent event) throws IOException {
@@ -96,9 +99,11 @@ public class newdormcreatepaneController {
             //录入操作
             dorm.forEach(e -> {
                 System.out.println(e);
-                createNewDorm(TableWriter.defaultDatabasePath, e);
+                createNewDorm(cacheTablePath, e);
             });
             cancel.setText("关闭");
+            System.out.println("database import correctly...");
+            new FileOperator(cacheTablePath, TableWriter.defaultDatabasePath).cp();
         }
     }
 
@@ -113,13 +118,13 @@ public class newdormcreatepaneController {
         if (dorm.isEmpty()) {
             return;
         } else {
-            cancel.setText("关闭");
             //录入操作
             dorm.forEach(e -> {
                 System.out.println(e);
-                createNewDorm(TableWriter.defaultDatabasePath, e);
+                createNewDorm(cacheTablePath, e);
             });
-            cancel.setText("关闭");
+            System.out.println("database import correctly...");
+            new FileOperator(cacheTablePath, TableWriter.defaultDatabasePath).cp();
         }
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

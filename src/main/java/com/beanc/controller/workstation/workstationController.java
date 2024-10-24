@@ -1,16 +1,14 @@
 package com.beanc.controller.workstation;
 
-import com.beanc.candicesta.MainApplication;
+import com.beanc.controller.menu.file.newdormcreatepaneController;
 import com.beanc.database.*;
 import com.beanc.util.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -18,12 +16,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -211,6 +210,15 @@ public class workstationController {
                                 try {
                                     passwordStage.close();
 
+                                    //对原数据库文件进行桌面备份
+                                    String userHome = System.getProperty("user.home");
+                                    new FileOperator(TableWriter.defaultDatabasePath, userHome + "\\Desktop\\old.accdb").cp();
+
+                                    String userDir = System.getProperty("user.dir");
+                                    new FileOperator(userDir + "\\initfiles\\database\\blank.accdb",
+                                            newdormcreatepaneController.cacheTablePath).cp();
+
+                                    //此处进入数据库新建页面
                                     Stage stage = new Stage();
                                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/beanc/layout/menu/file/newdormcreatepane.fxml"));
                                     Scene dormScene = new Scene(fxmlLoader.load());
@@ -287,7 +295,12 @@ public class workstationController {
 
     @FXML
     void onFileExportLogMenuItemClick(ActionEvent event) {
-        onFileImportDatabaseMenuItemClick(event);
+//        onFileImportDatabaseMenuItemClick(event);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("保存文件");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("日志文本文件(*.txt)", "*.txt"));
+        File file = fileChooser.showSaveDialog(rootVBox.getScene().getWindow());
+        new FileOperator(LogInfoOperator.defaultLogPath, file.getAbsolutePath()).cp();
     }
 
     @FXML
@@ -315,6 +328,17 @@ public class workstationController {
         table.getColumns().clear();
         table.getItems().clear();
         new AccessSetTable(table, "all_add");
+        //刷新ComboBox内容，先删除后添加
+        dormitory_input.getItems().clear();
+        dormitory_input
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
+        dormitory_use.getItems().clear();
+        dormitory_use
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
     }
 
     @FXML
@@ -329,6 +353,17 @@ public class workstationController {
         table.getColumns().clear();
         table.getItems().clear();
         new AccessSetTable(table, "all_deduct");
+        //刷新ComboBox
+        dormitory_input.getItems().clear();
+        dormitory_input
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
+        dormitory_use.getItems().clear();
+        dormitory_use
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
     }
 
     @FXML
@@ -343,6 +378,17 @@ public class workstationController {
         table.getColumns().clear();
         table.getItems().clear();
         new AccessSetTable(table, "add");
+        //刷新ComboBox
+        dormitory_input.getItems().clear();
+        dormitory_input
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
+        dormitory_use.getItems().clear();
+        dormitory_use
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
     }
 
     @FXML
@@ -358,6 +404,17 @@ public class workstationController {
         table.getColumns().clear();
         table.getItems().clear();
         new AccessSetTable(table, "deduct");
+        //刷新ComboBox
+        dormitory_input.getItems().clear();
+        dormitory_input
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
+        dormitory_use.getItems().clear();
+        dormitory_use
+                .getItems()
+                .addAll(new ProfileOperator(ProfileOperator.defaultProfilePath)
+                        .getDorm());
     }
 
     //日志显示radio监视器
@@ -795,7 +852,7 @@ public class workstationController {
                             "deduct",
                             dorm, "").getNotZeroDateList();
 
-                    use_records.appendText(timeinfo + ":查询体活使用历史日期\n");
+                    use_records.appendText(timeinfo + ":查询" + dorm + "体活使用历史日期\n");
                     date.forEach(e -> {
                         use_records.appendText(e + "\n");
                     });
@@ -810,7 +867,7 @@ public class workstationController {
                             "add",
                             dorm, "").getNotZeroDateList();
 
-                    use_records.appendText(timeinfo + ":查询体活罚除历史日期\n");
+                    use_records.appendText(timeinfo + ":查询" + dorm + "体活罚除历史日期\n");
                     date.forEach(e -> {
                         use_records.appendText(e + "\n");
                     });
@@ -858,10 +915,24 @@ public class workstationController {
 
     @FXML
     public void initialize() {
-        //设置空事件禁用关闭按钮，以防误触
+        //重新设置关闭按钮，添加警告
         Platform.runLater(() -> {
             Stage currentStage = (Stage) rootVBox.getScene().getWindow();
-            currentStage.setOnCloseRequest(Event::consume);
+            currentStage.setOnCloseRequest(event -> {
+                event.consume();
+                try {
+                    new WarningCreator((Stage) rootVBox.getScene().getWindow(), "退出警告", "是否确认退出？",
+                            cancelEvent -> {
+                                Stage stage = (Stage) ((Node) cancelEvent.getSource()).getScene().getWindow();
+                                stage.close();
+                            },
+                            confirmEvent -> {
+                                Platform.exit();
+                            });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         });
 
         //顶栏菜单初始化
