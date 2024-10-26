@@ -1,3 +1,13 @@
+<p align="center">
+    <a href="https://github.com/beanc904/CandiceSta"><img width="200" src="https://github.com/beanc904/CandiceSta/blob/master/src/main/resources/com/beanc/images/icon.png" alt="CandiceSta logo"></a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/beanc904/CandiceSta/releases"><img src="https://img.shields.io/github/release/beanc904/CandiceSta" alt="Release version"></a>
+    <a href="https://github.com/beanc904/CandiceSta/blob/master/LICENSE"><img src="https://img.shields.io/github/license/beanc904/CandiceSta" alt="License"></a>
+    <a href="https://github.com/beanc904/CandiceSta/tree/master/.Doc/documents"><img src="https://img.shields.io/badge/documents-releases-yellow" alt="Documents"></a>
+</p>
+
 # Candice Hygiene Statistic
 
 ## 目录
@@ -42,7 +52,7 @@
 
 ## 实例
 
-详情见[软件使用说明书](Doc.pdf)。
+详情见[软件使用说明书](.Doc/documents/CandiceSta-v1.0.0-beta.pdf)。
 
 ## 贡献指南
 
